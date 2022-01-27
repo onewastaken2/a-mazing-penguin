@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public bool cannotStop = false;   //For when penguin is on ice without skates and CANNOT turn
     public bool hasSkates = false;    //For when penguin is on ice with skates and CAN turn
 
-    private float acceleration = 0;   //Allows for gradual increase in movement speed
+    private float _acceleration = 0;   //Allows for gradual increase in movement speed
     private float walkSpeed = 5;      //How fast penguin walks on ground
     private float slideSpeed = 8;     //How fast penguin slides on ice
 
@@ -108,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         //Penguin will turn to face new direction
         if(!isMoving)
         {
-            acceleration = 0;
+            _acceleration = 0;
 
             if(Input.GetMouseButtonDown(0))
             {
@@ -138,13 +138,12 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         transform.rotation = clickPosRot;
-        transform.position = Vector3.MoveTowards(transform.position, clickPos, acceleration * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, clickPos, _acceleration * Time.deltaTime);
 
-        if(acceleration < walkSpeed)
+        if(_acceleration < walkSpeed)
         {
-            acceleration += 0.25f;
+            _acceleration += 0.25f;
         }
-
         if(transform.position == clickPos)
         {
             isMoving = false;
@@ -160,21 +159,21 @@ public class PlayerMovement : MonoBehaviour
         if(hasSkates)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, clickPosRot, 5.5f * Time.deltaTime);
-            transform.position += transform.forward * acceleration * Time.deltaTime;
+            transform.position += transform.forward * _acceleration * Time.deltaTime;
 
-            if(acceleration < slideSpeed)
+            if(_acceleration < slideSpeed)
             {
-                acceleration += 0.25f;
+                _acceleration += 0.25f;
             }
         }
         else
         {
             cannotStop = true;
-            transform.position += slideTowards * acceleration * Time.deltaTime;
+            transform.position += slideTowards * _acceleration * Time.deltaTime;
 
-            if(acceleration < slideSpeed)
+            if(_acceleration < slideSpeed)
             {
-                acceleration += 0.25f;
+                _acceleration += 0.25f;
             }
         }
     }
@@ -188,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
             Respawn();
         }
     }
-
+    
 
     //Player has died and is being sent back to checkpoint
     void Respawn()
