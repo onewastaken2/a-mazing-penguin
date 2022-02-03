@@ -28,6 +28,7 @@ public class Spinner : MonoBehaviour
     private void Update()
     {
         Move();
+        transform.Rotate(0, 180 * Time.deltaTime, 0);
     }
 
 

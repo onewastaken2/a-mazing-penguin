@@ -24,7 +24,14 @@ public class LevelManager : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(FadeIn());
+            if(SceneManager.GetActiveScene().buildIndex != 4)
+            {
+                StartCoroutine(FadeIn());
+            }
+            else
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 

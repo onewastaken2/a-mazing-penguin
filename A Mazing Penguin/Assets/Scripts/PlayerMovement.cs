@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;        //For detecting when penguin is walking on ground terrain
     [SerializeField] private LayerMask iceLayer;           //For detecting when penguin is sliding on ice terrain
     [SerializeField] private LayerMask environmentLayer;   //For detecting walls and impassable objects
-    [SerializeField] private LayerMask hazardLayer;        //For detecting enemies and dangers
+    [SerializeField] private LayerMask enemyLayer;        //For detecting enemies and dangers
     [SerializeField] private Collider _collider;           //References collider for raycast origin
     [SerializeField] private GameObject _checkpoint;       //Referencing current level checkpoint
 
@@ -182,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
     //Detects for enemies and other dangers
     private void OnTriggerEnter(Collider other)
     {
-        if((hazardLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
+        if((enemyLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
         {
             Respawn();
         }
