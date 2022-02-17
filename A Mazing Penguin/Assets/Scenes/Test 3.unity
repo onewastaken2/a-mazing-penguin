@@ -8738,6 +8738,11 @@ PrefabInstance:
       propertyPath: mainLight
       value: 
       objectReference: {fileID: 76442641}
+    - target: {fileID: 157206404049734276, guid: 7e59f80fe8180644b92928eee7cf9560,
+        type: 3}
+      propertyPath: playerObj
+      value: 
+      objectReference: {fileID: 1185271875}
     - target: {fileID: 2764076141175124775, guid: 7e59f80fe8180644b92928eee7cf9560,
         type: 3}
       propertyPath: m_RootOrder
@@ -14441,6 +14446,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8883573270956745255, guid: a9ff50ffcd8074948a5f281dead9ec2f,
+        type: 3}
+      propertyPath: _checkpoint
+      value: 
+      objectReference: {fileID: 66045859}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9ff50ffcd8074948a5f281dead9ec2f, type: 3}
 --- !u!1 &1185271875 stripped

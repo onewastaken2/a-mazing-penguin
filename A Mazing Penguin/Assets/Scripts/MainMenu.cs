@@ -25,4 +25,14 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+
+    //Button for loading in saved data
+    //Starts session at latest level reached
+    public void LoadGame()
+    {
+        PlayerData _data = SaveSystem.LoadGame();
+        PlayerData.farthestLevelReached = _data.gameProgress;
+        PlayerData.deathCount = _data.totalDeaths;
+    }
 }

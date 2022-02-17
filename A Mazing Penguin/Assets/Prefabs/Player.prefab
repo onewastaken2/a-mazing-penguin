@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 4767897354628460046}
   - component: {fileID: 4767897354628460033}
   - component: {fileID: 4767897354628460044}
+  - component: {fileID: 8883573270956745255}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -244,12 +245,26 @@ MonoBehaviour:
   environmentLayer:
     serializedVersion: 2
     m_Bits: 1024
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 2048
   _collider: {fileID: 4767897354628460046}
-  _checkpoint: {fileID: 0}
   isMoving: 0
   isSliding: 0
   cannotStop: 0
   hasSkates: 0
+--- !u!114 &8883573270956745255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4767897354628460045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432ec01f26ed7fb408e8516c8816cd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  _checkpoint: {fileID: 0}
+  deathCount: 0
+  farthestLevelReached: 0

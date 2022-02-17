@@ -4,18 +4,45 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private Light mainLight;   //References main light for scene transitions
+    [SerializeField] private Light mainLight;        //References main light for scene transitions
+    [SerializeField] private GameObject playerObj;   //References player gameObject for accessing controller
 
+    private PlayerMovement playerMovement;   //For whether power ups are active based on level
+
+    private int currentLevel;   //Keeps track of current level player is on right now
+    
 
     private void Awake()
     {
         mainLight.intensity = 0;
+        playerMovement = playerObj.GetComponent<PlayerMovement>();
+        currentLevel = SceneManager.GetActiveScene().buildIndex;
+        LevelSetup();
     }
 
 
     private void Start()
     {
         StartCoroutine(FadeOut());
+    }
+
+
+    //Updates player progress if current level is a new level reached
+    //Checks if power ups are enabled based on current level
+    void LevelSetup()
+    {
+        if(currentLevel > PlayerData.farthestLevelReached)
+        {
+            PlayerData.farthestLevelReached++;
+        }
+        if(currentLevel >= 2)
+        {
+            playerMovement.hasSkates = true;
+        }
+        else
+        {
+            playerMovement.hasSkates = false;
+        }
     }
 
 
@@ -38,6 +65,7 @@ public class LevelManager : MonoBehaviour
 
     //Player has reach end of level
     //Scene goes dims to black
+    //Loads the next level
     IEnumerator FadeIn()
     {
         float _duration = 2f;
@@ -49,7 +77,7 @@ public class LevelManager : MonoBehaviour
             _duration -= _interval;
             yield return new WaitForSeconds(_interval);
         }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(currentLevel + 1);
     }
 
 

@@ -6,13 +6,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;        //For detecting when penguin is walking on ground terrain
     [SerializeField] private LayerMask iceLayer;           //For detecting when penguin is sliding on ice terrain
     [SerializeField] private LayerMask environmentLayer;   //For detecting walls and impassable objects
-    [SerializeField] private LayerMask enemyLayer;        //For detecting enemies and dangers
     [SerializeField] private Collider _collider;           //References collider for raycast origin
-    [SerializeField] private GameObject _checkpoint;       //Referencing current level checkpoint
 
     private Vector3 clickPos;         //References where cursor is based on mouse click
     private Vector3 slideTowards;     //Finds direction to slide to on mouse click without skates
-    private Vector3 checkpointPos;    //References checkpoint position for respawn location
     private Quaternion clickPosRot;   //Rotates penguin towards mouse click based on current position with skates
 
     public bool isMoving = false;     //For when player has clicked to move
@@ -23,12 +20,6 @@ public class PlayerMovement : MonoBehaviour
     private float _acceleration = 0;   //Allows for gradual increase in movement speed
     private float walkSpeed = 5;      //How fast penguin walks on ground
     private float slideSpeed = 8;     //How fast penguin slides on ice
-
-
-    private void Awake()
-    {
-        checkpointPos = _checkpoint.transform.position;
-    }
 
 
     private void Update()
@@ -176,23 +167,5 @@ public class PlayerMovement : MonoBehaviour
                 _acceleration += 0.25f;
             }
         }
-    }
-
-
-    //Detects for enemies and other dangers
-    private void OnTriggerEnter(Collider other)
-    {
-        if((enemyLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
-        {
-            Respawn();
-        }
-    }
-    
-
-    //Player has died and is being sent back to checkpoint
-    void Respawn()
-    {
-        isMoving = false;
-        transform.position = checkpointPos;
     }
 }
