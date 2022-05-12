@@ -3,6 +3,7 @@
 public class Spinner : MonoBehaviour
 {
     [SerializeField] private LayerMask environmentLayer;   //For detecting when spinner collides with environment
+    [SerializeField] private LayerMask enemyLayer;         //For detecting when spinner collides with spike walls and other spinners
     [SerializeField] private bool goBack = false;          //For when spinner is now moving opposite of original direction
     [SerializeField] private float directionX;             //Assigns spinner initial direction to move along x axis
     [SerializeField] private float directionZ;             //Assigns spinner initial direction to move along z axis
@@ -36,11 +37,11 @@ public class Spinner : MonoBehaviour
     //Spinner is either moving in original or opposite direction
     void Move()
     {
-        if (currentSpeed > moveSpeed)
+        if(currentSpeed > moveSpeed)
         {
             currentSpeed -= 0.5f;
         }
-        if (goBack)
+        if(goBack)
         {
             transform.position -= moveTo * currentSpeed * Time.deltaTime;
         }
@@ -51,14 +52,15 @@ public class Spinner : MonoBehaviour
     }
 
 
-    //Detects for environment objects to bounce off of
+    //Detects for environment objects and other spinners to bounce off of
     private void OnTriggerEnter(Collider other)
     {
-        if((environmentLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
+        if ((environmentLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer
+            || (enemyLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
         {
             currentSpeed = ricochetSpeed;
 
-            if(goBack)
+            if (goBack)
             {
                 goBack = false;
             }

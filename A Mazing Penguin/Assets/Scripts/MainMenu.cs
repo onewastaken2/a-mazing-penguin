@@ -6,6 +6,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private string feedbackForm;   //References feedback form url
 
 
+    private void Awake()
+    {
+        LoadGame();
+    }
+
+
     //Button for loading the game
     public void StartGame()
     {

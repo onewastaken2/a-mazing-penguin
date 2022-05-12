@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3741505478714514617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 97526885164799576}
+  - component: {fileID: 2453177869382939050}
+  m_Layer: 0
+  m_Name: PushBlockHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &97526885164799576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3741505478714514617}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0.383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4767897354628460047}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2453177869382939050
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3741505478714514617}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4767897353318969136
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,8 +211,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4767897354628460047}
-  - component: {fileID: 4767897354628460046}
   - component: {fileID: 4767897354628460033}
+  - component: {fileID: 4767897354628460046}
   - component: {fileID: 4767897354628460044}
   - component: {fileID: 8883573270956745255}
   m_Layer: 0
@@ -191,22 +235,10 @@ Transform:
   m_Children:
   - {fileID: 4767897353318969140}
   - {fileID: 4767897353909023637}
+  - {fileID: 97526885164799576}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4767897354628460046
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4767897354628460045}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &4767897354628460033
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -223,6 +255,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &4767897354628460046
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4767897354628460045}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &4767897354628460044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,20 +281,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
-  groundLayer:
+  clickableLayer:
     serializedVersion: 2
     m_Bits: 256
-  iceLayer:
+  groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  environmentLayer:
+  iceLayer:
     serializedVersion: 2
     m_Bits: 1024
+  fastIceLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  reverseIceLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 8192
   _collider: {fileID: 4767897354628460046}
+  pushBlockHitbox: {fileID: 3741505478714514617}
+  clickImage: {fileID: 0}
   isMoving: 0
   isSliding: 0
   cannotStop: 0
   hasSkates: 0
+  inReverse: 0
 --- !u!114 &8883573270956745255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +321,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 16384
   _checkpoint: {fileID: 0}
-  deathCount: 0
-  farthestLevelReached: 0
+  playerDeaths: {fileID: 0}

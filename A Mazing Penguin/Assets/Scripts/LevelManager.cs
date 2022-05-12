@@ -46,10 +46,10 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    //Detects for player
+    //Detects for player, then ends level
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject == playerObj)
         {
             if(SceneManager.GetActiveScene().buildIndex != 4)
             {

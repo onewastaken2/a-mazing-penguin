@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask enemyLayer;     //For detecting enemies and dangers
     [SerializeField] private GameObject _checkpoint;   //Referencing current level checkpoint
+    [SerializeField] private Text playerDeaths;        //For displaying player total deaths
 
     private PlayerMovement playerMovement;   //For saying isMoving is false while respawning
 
@@ -48,5 +50,13 @@ public class Player : MonoBehaviour
     void Saving()
     {
         SaveSystem.SaveGame(this);
+        DisplayPlayerDeaths();
+    }
+
+
+    //Shows the total number of deaths to the player
+    void DisplayPlayerDeaths()
+    {
+        playerDeaths.text = "Deaths: " + PlayerData.deathCount.ToString();
     }
 }

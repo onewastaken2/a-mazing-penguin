@@ -12,7 +12,7 @@ public class CameraMovement : MonoBehaviour
     private Vector3 camToPlayer;   //Camera moves back to player, with player in center of view
 
     private float camY;             //References camera position on y to keep from moving on y axis
-    private float panSpeed = 10f;   //How fast camera moves when panning
+    private float panSpeed = 12f;   //How fast camera moves when panning
 
 
     private void Awake()
