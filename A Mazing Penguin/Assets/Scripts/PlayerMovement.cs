@@ -22,13 +22,13 @@ public class PlayerMovement : MonoBehaviour
     public bool isSliding = false;    //For when penguin is moving over ice
     public bool cannotStop = false;   //For when penguin is on ice without skates and CANNOT turn
     public bool hasSkates = false;    //For when penguin is on ice with skates and CAN turn
-    public bool inReverse = false;    //
+    public bool inReverse = false;    //For when penguin is on REVERSE ice and clickPos is calculated to be inverted
 
     private float _acceleration = 0f;   //Allows for gradual increase in movement speed
-    private float walkSpeed = 5f;       //How fast penguin walks on ground
-    private float slideSpeed = 7.5f;    //How fast penguin slides on ice
-    private float turnSpeed = 5.5f;     //How quickly penguin turns while sliding WITH skates
-    private float fastSlide = 11f;      //How fast penguin slides on FAST ice
+    private float walkSpeed = 4f;       //How fast penguin walks on ground
+    private float slideSpeed = 8f;      //How fast penguin slides on ice
+    private float turnSpeed = 5f;       //How quickly penguin turns while sliding WITH skates
+    private float fastSlide = 12f;      //How fast penguin slides on FAST ice
     private float originSlideSpeed;     //For resetting slideSpeed when no longer on fast ice
 
 
@@ -132,7 +132,6 @@ public class PlayerMovement : MonoBehaviour
                     slideTowards = (clickPos - transform.position).normalized;
                 }
                 isMoving = true;
-                //StartCoroutine(ClickAnimation());
             }
         }
 

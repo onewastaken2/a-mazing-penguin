@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Snowball : MonoBehaviour
 {
-    [SerializeField] private LayerMask environmnetLayer;
+    [SerializeField] private LayerMask environmnetLayer;   //For detecting walls and impassable objects
 
     private float moveSpeed = 10f;   //How fast snowballs move
 

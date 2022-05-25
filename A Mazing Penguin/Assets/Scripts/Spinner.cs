@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Spinner : MonoBehaviour
 {
     [SerializeField] private LayerMask environmentLayer;   //For detecting when spinner collides with environment
     [SerializeField] private LayerMask enemyLayer;         //For detecting when spinner collides with spike walls and other spinners
+    [SerializeField] private Collider _collider;           //For referencing collider to turn OFF/ON after collisions
     [SerializeField] private bool goBack = false;          //For when spinner is now moving opposite of original direction
     [SerializeField] private float directionX;             //Assigns spinner initial direction to move along x axis
     [SerializeField] private float directionZ;             //Assigns spinner initial direction to move along z axis
@@ -55,12 +57,12 @@ public class Spinner : MonoBehaviour
     //Detects for environment objects and other spinners to bounce off of
     private void OnTriggerEnter(Collider other)
     {
-        if ((environmentLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer
+        if((environmentLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer
             || (enemyLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
         {
             currentSpeed = ricochetSpeed;
 
-            if (goBack)
+            if(goBack)
             {
                 goBack = false;
             }
@@ -68,6 +70,18 @@ public class Spinner : MonoBehaviour
             {
                 goBack = true;
             }
+            StartCoroutine(TurnIsTriggerOffOn());
         }
+    }
+
+
+    //Briefly switches isTrigger OFF/ON after colliding with environment or an enemy
+    //Work around to avoid OnTriggerEnter() to occur more than once during one Update()
+    IEnumerator TurnIsTriggerOffOn()
+    {
+        _collider.enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        _collider.enabled = true;
+        _collider.isTrigger = true;
     }
 }

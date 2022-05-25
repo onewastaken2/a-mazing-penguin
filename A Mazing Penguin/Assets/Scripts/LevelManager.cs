@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour
         {
             PlayerData.farthestLevelReached++;
         }
-        if(currentLevel >= 2)
+        if(currentLevel >= 3)
         {
             playerMovement.hasSkates = true;
         }
@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour
     {
         if(other.gameObject == playerObj)
         {
-            if(SceneManager.GetActiveScene().buildIndex != 4)
+            if(SceneManager.GetActiveScene().buildIndex != 5)
             {
                 StartCoroutine(FadeIn());
             }

@@ -3,13 +3,14 @@
 public class Rookram : MonoBehaviour
 {
     [SerializeField] private LayerMask environmentLayer;
+    [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private GameObject playerObj;
 
     private Vector3 originPos;
 
     private bool isCharging = false;
     private bool resetEnemy = false;
-    private bool hitPlayer = false;
+    //private bool hitPlayer = false;
 
     private float moveSpeed = 2f;
     private float maxSpeed = 10f;
@@ -29,11 +30,11 @@ public class Rookram : MonoBehaviour
         {
             RaycastHit _hit;
 
-            if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out _hit, 10f))
+            if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out _hit, 20f))
             {
                 if(_hit.collider.gameObject == playerObj)
                 {
-                    gameObject.layer = LayerMask.NameToLayer("Enemy");
+                    //gameObject.layer = LayerMask.NameToLayer("Enemy");
                     isCharging = true;
                 }
             }
@@ -77,26 +78,24 @@ public class Rookram : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
-        {
-            hitPlayer = true;
-        }
+        //if (other.gameObject.CompareTag("Player"))
+        //{
+        //    hitPlayer = true;
+        //}
 
-        if((environmentLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
+        if((environmentLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer ||
+            (enemyLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
         {
             isCharging = false;
             moveSpeed = originSpeed;
-            gameObject.layer = LayerMask.NameToLayer("Environment");
+            resetEnemy = true;
+            //gameObject.layer = LayerMask.NameToLayer("Environment");
 
-            if(hitPlayer)
-            {
-                hitPlayer = false;
-                resetEnemy = true;
-            }
-            else
-            {
-                Destroy(this);
-            }
+            //if (hitPlayer)
+            //{
+            //    hitPlayer = false;
+            //    resetEnemy = true;
+            //}
         }
     }
 }

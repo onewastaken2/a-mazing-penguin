@@ -1104,7 +1104,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: A Mazing Penguin - Version 1.0
+  m_Text: A Mazing Penguin - Version 1.1
 --- !u!222 &1146826856
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1952,8 +1952,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 69, y: -0}
-  m_SizeDelta: {x: -60, y: -145}
+  m_AnchoredPosition: {x: 48.5, y: 0}
+  m_SizeDelta: {x: -63, y: -145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1953547128
 MonoBehaviour:
@@ -1987,16 +1987,16 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 2
-  m_Text: 'RMB - Move
+  m_Text: 'Right-click: Move
 
-    LMB - Look Toward
+    Left-click: Look Toward
 
-    WASD - Camera
+    WASD: Camera
 
-    Spacebar - Recenter
-    To Player
+    Spacebar:
+    Recenter To Player
 
-    Esc - Pause'
+    Esc: Pause'
 --- !u!222 &1953547129
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2059,7 +2059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ece4c15bff0244fbb02ea1a53b3617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feedbackForm: https://docs.google.com/forms/d/e/1FAIpQLSe-o89g-4oDupJdrHGdBHPEpGqkrUSZ3gWxNH99BodcTrl7Rg/viewform?usp=sf_link
+  feedbackForm: https://docs.google.com/forms/d/e/1FAIpQLSeiBZ1puCkYZCNnCnXwmjX3V8rbgi3kPAt27NAG7CiOALDfww/viewform?usp=sf_link
 --- !u!1 &2114466230
 GameObject:
   m_ObjectHideFlags: 0

@@ -93,7 +93,7 @@ public class MovingBlock : MonoBehaviour
         {
             case "Up Left":
                 if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.5f, 0.5f, 0.5f),
-                transform.TransformDirection(-Vector3.right), out _hit, transform.rotation, 0.1f, enemyLayer | environmentLayer))
+                transform.TransformDirection(-Vector3.right), out _hit, transform.rotation, 0.2f, enemyLayer | environmentLayer))
                 {
                     enabled = false;
                 }
@@ -114,7 +114,7 @@ public class MovingBlock : MonoBehaviour
 
             case "Up Right":
                 if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.5f, 0.5f, 0.5f),
-                transform.TransformDirection(Vector3.forward), out _hit, transform.rotation, 0.1f, enemyLayer | environmentLayer))
+                transform.TransformDirection(Vector3.forward), out _hit, transform.rotation, 0.2f, enemyLayer | environmentLayer))
                 {
                     enabled = false;
                 }
@@ -135,7 +135,7 @@ public class MovingBlock : MonoBehaviour
 
             case "Down Left":
                 if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.5f, 0.5f, 0.5f),
-                transform.TransformDirection(-Vector3.forward), out _hit, transform.rotation, 0.1f, enemyLayer | environmentLayer))
+                transform.TransformDirection(-Vector3.forward), out _hit, transform.rotation, 0.2f, enemyLayer | environmentLayer))
                 {
                     enabled = false;
                 }
@@ -156,7 +156,7 @@ public class MovingBlock : MonoBehaviour
 
             case "Down Right":
                 if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.5f, 0.5f, 0.5f),
-                transform.TransformDirection(Vector3.right), out _hit, transform.rotation, 0.1f, enemyLayer | environmentLayer))
+                transform.TransformDirection(Vector3.right), out _hit, transform.rotation, 0.2f, enemyLayer | environmentLayer))
                 {
                     enabled = false;
                 }

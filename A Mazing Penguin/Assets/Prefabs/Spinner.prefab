@@ -129,6 +129,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 16384
+  _collider: {fileID: 3541508569833061996}
+  _rb: {fileID: 3541508569833062001}
   goBack: 0
   directionX: 0
   directionZ: 0
