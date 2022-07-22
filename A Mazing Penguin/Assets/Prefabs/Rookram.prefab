@@ -224,3 +224,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   playerObj: {fileID: 0}
+  _collider: {fileID: 3023572323163775750}

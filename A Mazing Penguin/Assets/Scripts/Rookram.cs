@@ -1,16 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Rookram : MonoBehaviour
 {
     [SerializeField] private LayerMask environmentLayer;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private GameObject playerObj;
+    [SerializeField] private Collider _collider;
+    [SerializeField] private float detectRange;
 
     private Vector3 originPos;
 
-    private bool isCharging = false;
-    private bool resetEnemy = false;
-    //private bool hitPlayer = false;
+    public bool isCharging = false;
+    public bool resetEnemy = false;
+    public bool isBlocked = false;
 
     private float moveSpeed = 2f;
     private float maxSpeed = 10f;
@@ -26,25 +29,24 @@ public class Rookram : MonoBehaviour
 
     private void Update()
     {
-        if(!isCharging && !resetEnemy)
-        {
-            RaycastHit _hit;
+        RaycastHit _hit;
 
-            if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out _hit, 20f))
+        //
+        if(!isBlocked && Physics.BoxCast(_collider.bounds.center, new Vector3(0.5f, 0.5f, 0.5f),
+            transform.TransformDirection(Vector3.forward), out _hit, transform.rotation, detectRange))
+        {
+            if(_hit.collider.gameObject == playerObj)
             {
-                if(_hit.collider.gameObject == playerObj)
-                {
-                    //gameObject.layer = LayerMask.NameToLayer("Enemy");
-                    isCharging = true;
-                }
+                resetEnemy = false;
+                isCharging = true;
             }
         }
 
+        //
         if(isCharging)
         {
             ChargeForward();
         }
-
         if(resetEnemy)
         {
             ResetPosition();
@@ -52,6 +54,7 @@ public class Rookram : MonoBehaviour
     }
 
 
+    //
     void ChargeForward()
     {
         transform.position += transform.forward * moveSpeed * Time.deltaTime;
@@ -63,6 +66,7 @@ public class Rookram : MonoBehaviour
     }
 
 
+    //
     void ResetPosition()
     {
         if(transform.position == originPos)
@@ -76,26 +80,30 @@ public class Rookram : MonoBehaviour
     }
 
 
+    //
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.gameObject.CompareTag("Player"))
-        //{
-        //    hitPlayer = true;
-        //}
-
-        if((environmentLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer ||
+        if (!resetEnemy && (environmentLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer ||
             (enemyLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
         {
-            isCharging = false;
-            moveSpeed = originSpeed;
-            resetEnemy = true;
-            //gameObject.layer = LayerMask.NameToLayer("Environment");
-
-            //if (hitPlayer)
-            //{
-            //    hitPlayer = false;
-            //    resetEnemy = true;
-            //}
+            StartCoroutine(StopBeforeReset());
         }
+        if(resetEnemy && (environmentLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
+        {
+            resetEnemy = false;
+        }
+    }
+
+
+    //
+    IEnumerator StopBeforeReset()
+    {
+        isBlocked = true;
+        isCharging = false;
+        moveSpeed = originSpeed;
+        yield return new WaitForSeconds(1f);
+        resetEnemy = true;
+        yield return new WaitForSeconds(2f);
+        isBlocked = false;
     }
 }

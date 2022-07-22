@@ -92,8 +92,8 @@ public class MovingBlock : MonoBehaviour
         switch(isMoving)
         {
             case "Up Left":
-                if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.5f, 0.5f, 0.5f),
-                transform.TransformDirection(-Vector3.right), out _hit, transform.rotation, 0.2f, enemyLayer | environmentLayer))
+                if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.25f, 0.5f, 0.5f),
+                transform.TransformDirection(-Vector3.right), out _hit, transform.rotation, 0.4f, enemyLayer | environmentLayer))
                 {
                     enabled = false;
                 }
@@ -113,8 +113,8 @@ public class MovingBlock : MonoBehaviour
                 break;
 
             case "Up Right":
-                if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.5f, 0.5f, 0.5f),
-                transform.TransformDirection(Vector3.forward), out _hit, transform.rotation, 0.2f, enemyLayer | environmentLayer))
+                if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.5f, 0.5f, 0.25f),
+                transform.TransformDirection(Vector3.forward), out _hit, transform.rotation, 0.4f, enemyLayer | environmentLayer))
                 {
                     enabled = false;
                 }
@@ -134,8 +134,8 @@ public class MovingBlock : MonoBehaviour
                 break;
 
             case "Down Left":
-                if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.5f, 0.5f, 0.5f),
-                transform.TransformDirection(-Vector3.forward), out _hit, transform.rotation, 0.2f, enemyLayer | environmentLayer))
+                if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.5f, 0.5f, 0.25f),
+                transform.TransformDirection(-Vector3.forward), out _hit, transform.rotation, 0.4f, enemyLayer | environmentLayer))
                 {
                     enabled = false;
                 }
@@ -155,8 +155,8 @@ public class MovingBlock : MonoBehaviour
                 break;
 
             case "Down Right":
-                if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.5f, 0.5f, 0.5f),
-                transform.TransformDirection(Vector3.right), out _hit, transform.rotation, 0.2f, enemyLayer | environmentLayer))
+                if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.25f, 0.5f, 0.5f),
+                transform.TransformDirection(Vector3.right), out _hit, transform.rotation, 0.4f, enemyLayer | environmentLayer))
                 {
                     enabled = false;
                 }

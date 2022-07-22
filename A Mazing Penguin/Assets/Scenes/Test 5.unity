@@ -5163,6 +5163,11 @@ PrefabInstance:
       propertyPath: playerObj
       value: 
       objectReference: {fileID: 473518946}
+    - target: {fileID: 3023572323163775749, guid: 80da3948cff610a419d607c2123a9a31,
+        type: 3}
+      propertyPath: detectRange
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80da3948cff610a419d607c2123a9a31, type: 3}
 --- !u!4 &221621102 stripped
@@ -19547,7 +19552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a3f81b76b75ad4e94d75efd94046c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 473518946}
+  playerObj: {fileID: 473518946}
   upBound: 22
   downBound: -38
   leftBound: -49
@@ -48620,6 +48625,11 @@ PrefabInstance:
       propertyPath: playerObj
       value: 
       objectReference: {fileID: 473518946}
+    - target: {fileID: 3023572323163775749, guid: 80da3948cff610a419d607c2123a9a31,
+        type: 3}
+      propertyPath: detectRange
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80da3948cff610a419d607c2123a9a31, type: 3}
 --- !u!4 &2078195746 stripped

@@ -18997,11 +18997,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a3f81b76b75ad4e94d75efd94046c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 473518946}
+  playerObj: {fileID: 473518946}
   upBound: 4
   downBound: -32
   leftBound: -1
   rightBound: 77
+  followPlayer: 0
 --- !u!1001 &874840084
 PrefabInstance:
   m_ObjectHideFlags: 0

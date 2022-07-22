@@ -31,7 +31,7 @@ public class Spinner : MonoBehaviour
     private void Update()
     {
         Move();
-        transform.Rotate(0, 180 * Time.deltaTime, 0);
+        //transform.Rotate(0, 180 * Time.deltaTime, 0);
     }
 
 
@@ -75,7 +75,7 @@ public class Spinner : MonoBehaviour
     }
 
 
-    //Briefly switches isTrigger OFF/ON after colliding with environment or an enemy
+    //Turns isTrigger OFF/ON after colliding with environment or an enemy
     //Work around to avoid OnTriggerEnter() to occur more than once during one Update()
     IEnumerator TurnIsTriggerOffOn()
     {
