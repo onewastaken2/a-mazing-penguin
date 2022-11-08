@@ -211,7 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4767897354628460047}
-  - component: {fileID: 4767897354628460033}
+  - component: {fileID: 1437734707933516032}
   - component: {fileID: 5863659628632084262}
   - component: {fileID: 4767897354628460044}
   - component: {fileID: 8883573270956745255}
@@ -239,7 +239,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &4767897354628460033
+--- !u!54 &1437734707933516032
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,8 +319,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432ec01f26ed7fb408e8516c8816cd90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movingBlocks: []
+  blockOriginPos: []
+  _checkpoint: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 16384
-  _checkpoint: {fileID: 0}
   playerDeaths: {fileID: 0}
+  _collider: {fileID: 5863659628632084262}
+  isRespawning: 0

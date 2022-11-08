@@ -557,12 +557,12 @@ GameObject:
   - component: {fileID: 409933032}
   - component: {fileID: 409933031}
   m_Layer: 5
-  m_Name: LoadButton
+  m_Name: LoadGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &409933030
 RectTransform:
   m_ObjectHideFlags: 0
@@ -627,7 +627,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2089017095}
-        m_MethodName: LoadGame
+        m_MethodName: ContinueGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -882,7 +882,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Play
+  m_Text: New
 --- !u!222 &490228240
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1645,7 +1645,7 @@ GameObject:
   - component: {fileID: 1706342372}
   - component: {fileID: 1706342371}
   m_Layer: 5
-  m_Name: PlayButton
+  m_Name: NewGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1715,7 +1715,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2089017095}
-        m_MethodName: StartGame
+        m_MethodName: NewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2060,6 +2060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feedbackForm: https://docs.google.com/forms/d/e/1FAIpQLSeiBZ1puCkYZCNnCnXwmjX3V8rbgi3kPAt27NAG7CiOALDfww/viewform?usp=sf_link
+  continueButton: {fileID: 409933031}
 --- !u!1 &2114466230
 GameObject:
   m_ObjectHideFlags: 0

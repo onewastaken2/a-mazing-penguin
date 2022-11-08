@@ -11,12 +11,13 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _checkpoint;   //Referencing current level checkpoint
     [SerializeField] private LayerMask enemyLayer;     //For detecting enemies and dangers
     [SerializeField] private Text playerDeaths;        //For displaying player total deaths
+    [SerializeField] private Collider _collider;       //References player hitbox so player deaths do not occur during respawn
 
     private PlayerMovement playerMovementRef;   //For setting isMoving to false while respawning
 
     private Vector3 checkpointPos;   //References checkpoint position for respawn location
 
-    public bool isRespawning = false;
+    public bool isRespawning = false;   //To be referenced by other scripts during player dying or resetting
 
 
     private void Awake()
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     {
         Saving();
     }
+
 
     //--TESTING PLAYER MANUAL RESET TO LAST CHECKPOINT--
     //private void Update()
@@ -47,21 +49,12 @@ public class Player : MonoBehaviour
     {
         if((enemyLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
         {
+            _collider.enabled = false;
             PlayerData.deathCount++;
             Saving();
             StartCoroutine(Respawn());
         }
     }
-
-
-    //Player has died or reset and is being sent back to checkpoint
-    //Blocks have been reset
-    //void Respawn()
-    //{
-    //    playerMovementRef.isMoving = false;
-    //    transform.position = checkpointPos;
-    //    ResetBlocks();
-    //}
 
 
     //Game saves after every new level reached
@@ -90,7 +83,7 @@ public class Player : MonoBehaviour
     }
 
 
-    //The PosInList is set so POSITION IN LIST matches POSITION IN ARRAY
+    //The posInList is set so POSITION IN LIST matches POSITION IN ARRAY
     //Each moving block Vector3 positions are reset to their original Vector3 on player respawn
     void ResetBlocks()
     {
@@ -102,15 +95,18 @@ public class Player : MonoBehaviour
     }
 
 
+    //Player has died and all character movement is stopped
+    //Player returns to last checkpoint position
+    //Then isRespawning, and blocks are reset to original positions
+    //Player respawn logic continues in the CameraMovement script
     IEnumerator Respawn()
     {
         playerMovementRef.enabled = false;
+        playerMovementRef.isMoving = false;
         yield return new WaitForSeconds(1f);
         transform.position = checkpointPos;
+        _collider.enabled = true;
         isRespawning = true;
         ResetBlocks();
     }
-
-    //player can manually go back to checkpoint to opt to reset blocks
-    //player must click the checkpoint flag to prompt player if they wish to go back?
 }

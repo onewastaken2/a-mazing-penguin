@@ -33,11 +33,6 @@ public class Snowball : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
-
-        if((environmnetLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
-        {
-            Destroy(gameObject);
-        }
     }
 
 
@@ -47,5 +42,4 @@ public class Snowball : MonoBehaviour
         yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
-
 }

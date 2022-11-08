@@ -3,16 +3,17 @@ using UnityEngine;
 
 public class Snowgul : MonoBehaviour
 {
-    [SerializeField] private GameObject playerObj;        //References penguin to determine IF player is in range of snowgul
-    [SerializeField] private GameObject snowballPrefab;   //References snowball prefab for instantiation
-    [SerializeField] private Transform spawnPoint;        //Where snowballs are instantiated when shot
+    [SerializeField] private LayerMask environmentLayer;   //For detecting if obstacle is in the way while attacking player
+    [SerializeField] private GameObject playerObj;         //References penguin to determine IF player is in range of snowgul
+    [SerializeField] private GameObject snowballPrefab;    //References snowball prefab for instantiation
+    [SerializeField] private Transform spawnPoint;         //Where snowballs are instantiated when shot
 
     private bool isAttacking = false;   //If player is currently within range for snowgul to attack
 
     private float attackRange = 12f;   //Determines snowgul attack radius size
     private float turnSpeed = 6f;      //How quickly snowgul turns to face player
     private float originTimer;         //For resetting timer back to its original amount
-    private float _timer = 3f;         //How long it takes to shoot a snowball, and between each shot
+    private float _timer = 3f;         //How long it takes before shooting a snowball after spotting player
 
 
     private void Awake()
@@ -41,24 +42,31 @@ public class Snowgul : MonoBehaviour
 
     //Checks if player has entered snowgul attack radius
     //This is determined based on player position to it
+    //Checks if obstacle is in way to determine whether to attack or not
     void CheckDistanceToPlayer()
     {
         float distanceToPlayer = (playerObj.transform.position - transform.position).magnitude;
 
         if(distanceToPlayer < attackRange)
         {
-            isAttacking = true;
-        }
-        else
-        {
-            isAttacking = false;
+            RaycastHit _hit;
+            Ray rayToPlayer = new Ray(transform.position, playerObj.transform.position - transform.position);
+
+            if(Physics.Raycast(rayToPlayer, out _hit, distanceToPlayer, environmentLayer))
+            {
+                isAttacking = false;
+            }
+            else
+            {
+                isAttacking = true;
+            }
         }
     }
 
 
     //Player is within range, and snowgul turns to face penguin
     //Snowgul readies for an attack, and shoots a snowball
-    //Snowgul repeats this until player is out of range
+    //Snowgul repeats this until player is out of range or out of sight
     IEnumerator ThrowSnowball()
     {
         if(_timer > 0.0f)

@@ -232,7 +232,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d685ba02ba72d43ba89f0e07c3dce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 8192
   playerObj: {fileID: 0}
   snowballPrefab: {fileID: 6030914484980854523, guid: bb038d721f73c9648a67d81afef02427,
     type: 3}
   spawnPoint: {fileID: 733989387996279548}
+  isAttacking: 0

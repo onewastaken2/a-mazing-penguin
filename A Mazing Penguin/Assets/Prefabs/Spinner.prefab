@@ -123,6 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 093ac0539ca0ce84db545daef02e511b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObj: {fileID: 4767897354628460045, guid: a9ff50ffcd8074948a5f281dead9ec2f,
+    type: 3}
   environmentLayer:
     serializedVersion: 2
     m_Bits: 8192
@@ -134,3 +136,4 @@ MonoBehaviour:
   directionX: 0
   directionZ: 0
   currentSpeed: 0
+  isStopped: 0
