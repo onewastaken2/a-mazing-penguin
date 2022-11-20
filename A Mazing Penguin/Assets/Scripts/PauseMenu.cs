@@ -57,4 +57,18 @@ public class PauseMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+
+    //level select button
+    //enable level select gameObject
+
+    //separate level select script
+    //access isPaused bool for quick exit w/ ESC
+    //access level deaths and total deaths to display as text
+    //script serves to store the various levels as interactable buttons
+    //^--have a horizontal scrollable image where buttons and graphics will go
+    //^--buttons are enabled only if player has reached those levels
+
+    //get farthestLevelReached, enable buttons based on this
+    //get level deaths and totalDeaths, display them through text
 }

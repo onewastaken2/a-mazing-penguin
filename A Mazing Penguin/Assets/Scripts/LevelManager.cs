@@ -10,12 +10,15 @@ public class LevelManager : MonoBehaviour
     private PlayerMovement playerMovement;   //For whether power ups are active based on level
 
     private int currentLevel;   //Keeps track of current level player is on right now
+
+    public GameObject levelEndScreen;   //For referencing when to enable end level text
     
 
     private void Awake()
     {
         mainLight.intensity = 0;
         playerMovement = playerObj.GetComponent<PlayerMovement>();
+        //playerMovement.enabled = true;
         currentLevel = SceneManager.GetActiveScene().buildIndex;
         LevelSetup();
     }
@@ -31,10 +34,6 @@ public class LevelManager : MonoBehaviour
     //Checks if power ups are enabled based on current level
     void LevelSetup()
     {
-        if(currentLevel > PlayerData.farthestLevelReached)
-        {
-            PlayerData.farthestLevelReached++;
-        }
         if(currentLevel >= 3)
         {
             playerMovement.hasSkates = true;
@@ -46,14 +45,29 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    //Detects for player, then ends level
+    //Level end text is displayed
+    //Player can click to continue to next level
+    public void LevelExit()
+    {
+        StartCoroutine(FadeIn());
+        levelEndScreen.SetActive(false);
+    }
+
+
+    //Detects for if player has reached end of level
+    //Level end text appears for player to read
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject == playerObj)
         {
             if(SceneManager.GetActiveScene().buildIndex != 5)
             {
-                StartCoroutine(FadeIn());
+                if(currentLevel > PlayerData.farthestLevelReached)
+                {
+                    PlayerData.farthestLevelReached++;
+                }
+                levelEndScreen.SetActive(true);
+                playerMovement.enabled = false;
             }
             else
             {
