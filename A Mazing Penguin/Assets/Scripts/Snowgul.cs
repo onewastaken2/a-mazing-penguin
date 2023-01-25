@@ -30,7 +30,7 @@ public class Snowgul : MonoBehaviour
         {
             if(_timer > 0.0f)
             {
-                StartCoroutine(ThrowSnowball());
+                StartCoroutine(SpitSnowball());
             }
         }
         else if(_timer != originTimer)
@@ -47,7 +47,7 @@ public class Snowgul : MonoBehaviour
     {
         float distanceToPlayer = (playerObj.transform.position - transform.position).magnitude;
 
-        if(distanceToPlayer < attackRange)
+        if(distanceToPlayer <= attackRange)
         {
             RaycastHit _hit;
             Ray rayToPlayer = new Ray(transform.position, playerObj.transform.position - transform.position);
@@ -67,13 +67,10 @@ public class Snowgul : MonoBehaviour
     //Player is within range, and snowgul turns to face penguin
     //Snowgul readies for an attack, and shoots a snowball
     //Snowgul repeats this until player is out of range or out of sight
-    IEnumerator ThrowSnowball()
+    IEnumerator SpitSnowball()
     {
-        if(_timer > 0.0f)
-        {
-            Turn();
-            _timer -= Time.deltaTime;
-        }
+        Turn();
+        _timer -= Time.deltaTime;
 
         if(_timer <= 0.0f)
         {

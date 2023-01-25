@@ -2,6 +2,16 @@
 
 public class MovingBlock : MonoBehaviour
 {
+    private enum Direction   //Determines direction THIS can move: up left, up right, down left, or down right
+    {
+        UpLeft,
+        UpRight,
+        DownLeft,
+        DownRight
+    }
+
+    private Direction currentDirection;   //Which direction THIS is now moving based on where player pushed THIS
+
     [SerializeField] private GameObject pushBlockHitbox;   //References player when pressing E for moving THIS
     [SerializeField] private LayerMask environmentLayer;   //For detecting walls and impassable objects
     [SerializeField] private LayerMask enemyLayer;         //For detecting if enemy is in the way
@@ -16,8 +26,6 @@ public class MovingBlock : MonoBehaviour
     private RaycastHit _hit;   //For boxcast checking ice and collisions
 
     private bool onIce = false;   //For when moving block is sliding on ice
-
-    private string isMoving;   //Determines direction THIS is moving: up left, up right, down left, or down right
 
     private float currentSpeed;      //Keeps track of moving block speed as it quickly slows down
     private float maxSpeed = 6.5f;   //The fastest THIS can go
@@ -60,22 +68,22 @@ public class MovingBlock : MonoBehaviour
             if(playerPos.x > currentPos.x && playerPos.z < currentPos.z)
             {
                 moveToPos = currentPos + new Vector3(-1, 0, 1);
-                isMoving = "Up Left";
+                currentDirection = Direction.UpLeft;
             }
             else if(playerPos.x < currentPos.x && playerPos.z < currentPos.z)
             {
                 moveToPos = currentPos + new Vector3(1, 0, 1);
-                isMoving = "Up Right";
+                currentDirection = Direction.UpRight;
             }
             else if(playerPos.x > currentPos.x && playerPos.z > currentPos.z)
             {
                 moveToPos = currentPos + new Vector3(-1, 0, -1);
-                isMoving = "Down Left";
+                currentDirection = Direction.DownLeft;
             }
             else
             {
                 moveToPos = currentPos + new Vector3(1, 0, -1);
-                isMoving = "Down Right";
+                currentDirection = Direction.DownRight;
             }
             movingDirection = (moveToPos - currentPos).normalized;
             currentSpeed = maxSpeed;
@@ -89,9 +97,9 @@ public class MovingBlock : MonoBehaviour
     //Moves a unit over while on ground, and continuously while on ice
     void Move()
     {
-        switch(isMoving)
+        switch(currentDirection)
         {
-            case "Up Left":
+            case Direction.UpLeft:
                 if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.1f, 0.5f, 0.5f),
                 transform.TransformDirection(-Vector3.right), out _hit, transform.rotation, 0.6f, enemyLayer | environmentLayer))
                 {
@@ -112,7 +120,7 @@ public class MovingBlock : MonoBehaviour
                 }
                 break;
 
-            case "Up Right":
+            case Direction.UpRight:
                 if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.5f, 0.5f, 0.1f),
                 transform.TransformDirection(Vector3.forward), out _hit, transform.rotation, 0.6f, enemyLayer | environmentLayer))
                 {
@@ -133,7 +141,7 @@ public class MovingBlock : MonoBehaviour
                 }
                 break;
 
-            case "Down Left":
+            case Direction.DownLeft:
                 if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.5f, 0.5f, 0.1f),
                 transform.TransformDirection(-Vector3.forward), out _hit, transform.rotation, 0.6f, enemyLayer | environmentLayer))
                 {
@@ -154,7 +162,7 @@ public class MovingBlock : MonoBehaviour
                 }
                 break;
 
-            case "Down Right":
+            case Direction.DownRight:
                 if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.1f, 0.5f, 0.5f),
                 transform.TransformDirection(Vector3.right), out _hit, transform.rotation, 0.6f, enemyLayer | environmentLayer))
                 {
