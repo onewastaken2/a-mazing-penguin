@@ -30,15 +30,15 @@ public class WaltowerColossutank : MonoBehaviour
     [SerializeField] private GameObject playerObj;       //For referencing player position when Waking, PhaseOne, and PhaseTwo
     [SerializeField] private GameObject bossSwitchObj;   //For referencing when to enable bossSwitch when Damaged
 
-    [SerializeField] private GameObject[] floorSwitches;                                        //Stores all floor switch objects
-    [SerializeField] private List<FloorSwitch> activeFloorSwitches = new List<FloorSwitch>();   //Tracks which floor switch from array are enabled
+    [SerializeField] private GameObject[] floorSwitches;                                      //Stores all floor switch objects
+    [SerializeField] private List<BossSwitch> activeFloorSwitches = new List<BossSwitch>();   //Tracks which floor switch from array are enabled
 
     [SerializeField] private GameObject snowballPrefab;         //References snowball prefab for instantiation
     [SerializeField] private Transform leftTurretSpawnPoint;    //Where snowball will spawn from when fired from the LEFT turret
     [SerializeField] private Transform rightTurretSpawnPoint;   //Where snowball will spawn from when fired from the RIGHT turret
     [SerializeField] private Transform mouthTurretSpawnPoint;   //Where snowball will spawn from when fired from the MIDDLE turret
 
-    private FloorSwitch bossSwitch;   //For referencing bossSwitchObj script for if isActive
+    private BossSwitch bossSwitch;   //For referencing bossSwitchObj script for if isActive
     private Player playerDiedRef;
 
     private bool isWaking = false;          //For when player is nearby to start the boss fight
@@ -62,7 +62,7 @@ public class WaltowerColossutank : MonoBehaviour
     {
         setTimeBetweenShots = timeBetweenShots;
         setRecoveringTimer = recoveringTimer;
-        bossSwitch = bossSwitchObj.GetComponent<FloorSwitch>();
+        bossSwitch = bossSwitchObj.GetComponent<BossSwitch>();
         playerDiedRef = playerObj.GetComponent<Player>();
         currentState = State.Waking;
     }
@@ -233,9 +233,10 @@ public class WaltowerColossutank : MonoBehaviour
         }
         for(int i = 0; i < numberOfActiveSwitches; i++)
         {
-            FloorSwitch activeFloorSwitch = floorSwitches[i].GetComponent<FloorSwitch>();
+            BossSwitch activeFloorSwitch = floorSwitches[i].GetComponent<BossSwitch>();
 
             activeFloorSwitch.isActive = true;
+            activeFloorSwitch.GetComponent<MeshRenderer>().enabled = true;
             activeFloorSwitches.Add(activeFloorSwitch);
         }
     }
@@ -266,6 +267,7 @@ public class WaltowerColossutank : MonoBehaviour
                 isRotatingRight = false;
             }
             bossSwitch.isActive = true;
+            bossSwitch.GetComponent<MeshRenderer>().enabled = true;
             currentState = State.Damaged;
         }
     }
@@ -413,6 +415,7 @@ public class WaltowerColossutank : MonoBehaviour
         for(int i = activeFloorSwitches.Count - 1; i >= 0; i--)
         {
             activeFloorSwitches[i].isActive = false;
+            activeFloorSwitches[i].GetComponent<MeshRenderer>().enabled = false;
             activeFloorSwitches.RemoveAt(i);
         }
         timeBetweenShots = setTimeBetweenShots;

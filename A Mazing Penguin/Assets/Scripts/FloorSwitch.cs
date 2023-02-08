@@ -1,38 +1,61 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FloorSwitch : MonoBehaviour
 {
-    //used for waltower colossutank boss
+    [SerializeField] private GameObject doorObj;   //Reference to door THIS floor switch is associated to
 
-    //used for switches with doors to reference
+    private Door _door;   //Accesses door functions and checks if isLocked
 
-    //only ever becomes active from other scripts
+    private int numberOfObjsOnSwitch = 0;   //Tracks the number of objects are currently on top of THIS floor switch
 
-    [SerializeField] private GameObject playerObj;
-
-    public bool isActive = false;
+    public bool isPressed = false;   //Whether THIS floor switch is currently being pressed or not
 
 
-    private void Update()
+    private void Awake()
     {
-        if(isActive)
+        _door = doorObj.GetComponent<Door>();
+    }
+
+
+    //Detects for any number of objects that are pressing this switch down
+    //Calls a door function if switch is not already being pressed
+    private void OnTriggerEnter(Collider other)
+    {
+        numberOfObjsOnSwitch++;
+
+        if(!isPressed)
         {
-            gameObject.GetComponent<MeshRenderer>().enabled = true;
-        }
-        else
-        {
+            isPressed = true;
             gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+            if(_door.isLocked)
+            {
+                _door.LockedDoorOpeningOrClosing();
+            }
+            else
+            {
+                _door.DoorOpeningOrClosing();
+            }
         }
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    //Detects for any number of objects that may have been removed from pressing down this switch
+    //This switch is no longer being pressed if no objects are currently on it
+    //Calls a LOCKED door function should this switch no longer be pressed
+    private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject == playerObj && isActive)
+        numberOfObjsOnSwitch--;
+
+        if(numberOfObjsOnSwitch < 1)
         {
-            isActive = false;
+            isPressed = false;
+            gameObject.GetComponent<MeshRenderer>().enabled = true;
+
+            if(_door.isLocked)
+            {
+                _door.LockedDoorOpeningOrClosing();
+            }
         }
     }
 }
