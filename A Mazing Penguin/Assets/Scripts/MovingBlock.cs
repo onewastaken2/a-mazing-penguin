@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class MovingBlock : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class MovingBlock : MonoBehaviour
     [SerializeField] private GameObject pushBlockHitbox;   //References player when pressing E for moving THIS
     [SerializeField] private LayerMask environmentLayer;   //For detecting walls and impassable objects
     [SerializeField] private LayerMask enemyLayer;         //For detecting if enemy is in the way
+    [SerializeField] private LayerMask pitLayer;           //For detecting pits and edges
     [SerializeField] private LayerMask iceLayer;           //For detecting if on ice to begin sliding
     [SerializeField] private Collider _collider;           //References collider for boxcast origin
 
@@ -23,7 +25,8 @@ public class MovingBlock : MonoBehaviour
     private Vector3 moveToPos;         //Based on playerPos and currentPos determines direction THIS should go
     private Vector3 movingDirection;   //For when THIS is on ice and movement continues beyond moveToPos
 
-    private RaycastHit _hit;   //For boxcast checking ice and collisions
+    private RaycastHit _hit;         //For boxcast checking ice and collisions
+    private Player playerDeathRef;   //For referencing player dying to stop block from continuing falling
 
     private bool onIce = false;   //For when moving block is sliding on ice
 
@@ -36,6 +39,7 @@ public class MovingBlock : MonoBehaviour
         //Turns off Update() function for this script
         //Is turned on only when moving block is being pushed
         enabled = false;
+        playerDeathRef = pushBlockHitbox.GetComponentInParent<Player>();
     }
 
 
@@ -88,6 +92,11 @@ public class MovingBlock : MonoBehaviour
             movingDirection = (moveToPos - currentPos).normalized;
             currentSpeed = maxSpeed;
             enabled = true;
+        }
+        if((pitLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
+        {
+            enabled = false;
+            StartCoroutine(BlockIsFalling());
         }
     }
 
@@ -196,5 +205,35 @@ public class MovingBlock : MonoBehaviour
         {
             currentSpeed -= 0.15f;
         }
+    }
+
+
+    //
+    IEnumerator BlockIsFalling()
+    {
+        float fallTime = 2f;
+        float countingDown = 0.01f;
+        float fallSpeed = 0f;
+
+        while(fallTime > 0.0f)
+        {
+            if(playerDeathRef.isRespawning)
+            {
+                Debug.Log("moving block stopped falling mid-way to reposition");
+                yield break;
+            }
+            else
+            {
+                transform.position -= transform.up * fallSpeed * Time.deltaTime;
+
+                if(fallSpeed < 35f)
+                {
+                    fallSpeed += 1f;
+                }
+                fallTime -= countingDown;
+                yield return new WaitForSeconds(countingDown);
+            }
+        }
+        transform.position = new Vector3(0, -5, 0);
     }
 }

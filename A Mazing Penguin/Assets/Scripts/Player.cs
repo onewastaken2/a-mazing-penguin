@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject _checkpoint;   //Referencing current level checkpoint for respawn location
     [SerializeField] private LayerMask enemyLayer;     //For detecting enemies and dangers
+    [SerializeField] private LayerMask pitLayer;       //For detecting pits and edges
     [SerializeField] private Text playerDeaths;        //For displaying player total deaths
     [SerializeField] private Collider _collider;       //References player hitbox so player deaths do not occur during respawn
 
@@ -20,7 +21,11 @@ public class Player : MonoBehaviour
     private Vector3 snowPilePos;                //References snow pile position when player has stepped near it
 
     [SerializeField] private bool isNearSnowPile = false;      //Checks if player is within vicinity of a snow pile
-    [SerializeField] private bool canPlaceCheckpoint = true;   //Player can reposition checkpoint ONE TIME to any nearby snow pile
+    [SerializeField] private bool canPlaceCheckpoint = true;   //Player can reposition respawn ONE TIME to any nearby snow pile
+
+    private bool isFalling = false;   //For when player has fallen down a pit or edge
+
+    private float fallSpeed = 0f;   //Penguin will gradually pick up speed when falling down a pit or edge
 
     public bool isRespawning = false;   //To be referenced by other scripts during player dying or resetting
 
@@ -40,10 +45,21 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        //Player can still use its one time use ability to move the respawn point for THIS level
+        //Player is nearby a snowpile
+        //Checks if player has pressed Q
         if(canPlaceCheckpoint && isNearSnowPile && Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("placed checkpoint");
             PlaceCheckpoint();
+        }
+
+        //Player has fallen down a pit or an edge
+        if(isFalling)
+        {
+            Debug.Log("is falling");
+            transform.position -= transform.up * fallSpeed * Time.deltaTime;
+            fallSpeed += 0.15f;
         }
 
         //if (Input.GetKeyDown(KeyCode.Q))
@@ -55,7 +71,8 @@ public class Player : MonoBehaviour
     }
 
 
-    //
+    //Player has chosen its checkpoint position by placing their respawn point on a new snowpile
+    //All block reset positions are set to where they are now located
     void PlaceCheckpoint()
     {
         canPlaceCheckpoint = false;
@@ -117,7 +134,14 @@ public class Player : MonoBehaviour
             Saving();
             StartCoroutine(Respawn());
         }
-
+        if((pitLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
+        {
+            _collider.enabled = false;
+            PlayerData.deathCount++;
+            Saving();
+            isFalling = true;
+            StartCoroutine(Respawn());
+        }
         if((snowPileLayer & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
         {
             foreach(GameObject snowPile in snowPiles)
@@ -151,36 +175,17 @@ public class Player : MonoBehaviour
         playerMovementRef.enabled = false;
         playerMovementRef.isMoving = false;
         yield return new WaitForSeconds(1f);
+
+        if(isFalling)
+        {
+            isFalling = false;
+            fallSpeed = 0;
+            yield return new WaitForEndOfFrame();
+        }
+        Debug.Log("waited for end of frame");
         transform.position = _checkpoint.transform.position;
         _collider.enabled = true;
         isRespawning = true;
         ResetBlocks();
     }
-
-
-    //player can opt to set checkpoint somewhere else
-
-    //player has a one time ability to place checkpoint down - use bool
-    //player MUST be isMoving = false to perform this
-    //player MUST be near the area that the checkpoint would be placed - use array?
-    //once new checkpoint is placed, movingBlocks[] resetPos are set to currentPos
-    //can reset level from start to refresh everything
-    
-    //piles of snow indicate where the checkpoint can be moved to
-    //checks distance between player and nearest pile of snow
-    //^--if player meets a certain closeness, and is not moving, can press Q to reposition checkpoint
-
-    //for loop to run through which snow pile is closer to player
-    //then check if 
-
-
-
-
-    //ontriggerenter, find which snow pile it belongs to, set 
-
-    //if !isSliding, run for loop
-    //grab which checkpoint from array is closest
-    //then, see if close enough to place flag down
-
-    //this action can be made while moving?
 }

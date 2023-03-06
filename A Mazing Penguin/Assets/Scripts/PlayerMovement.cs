@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -17,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 clickPos;         //References where cursor is based on mouse click
     private Vector3 slideTowards;     //Finds direction to slide to on mouse click without skates
     private Quaternion clickPosRot;   //Rotates penguin towards mouse click based on current position
+
+    private List<Vector3> savedClicks = new List<Vector3>();   //Used for storing queued shift-click positions when on ground
 
     public bool isMoving = false;     //For when player has clicked to move
     public bool isSliding = false;    //For when penguin is moving over ice
@@ -68,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if(_hit.collider != null)
                 {
+                    savedClicks.Clear();
                     isSliding = false;
                     isMoving = false;
 
@@ -87,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if(_hit.collider != null)
                 {
+                    savedClicks.Clear();
                     isSliding = true;
                 }
             }
@@ -100,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if(_hit.collider != null)
                 {
+                    savedClicks.Clear();
                     isMoving = false;
 
                     if(cannotStop)
@@ -110,14 +116,39 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        //Checks if player has moved the penguin
+        //Penguin will move based on terrain
+        if(isMoving && isSliding)
+        {
+            Slide();
+        }
+        else if(isMoving)
+        {
+            Move();
+        }
+        else
+        {
+            _acceleration = 0;
+        }
+
         //Checks if player has pressed RMB, then penguin will move
+        //Move commands may be queued by the player when holding SHIFT when walking
         //Penguin will not turn and move in new direction if on ice without skates
-        if(!cannotStop && Input.GetMouseButtonDown(1))
+        if (!cannotStop && Input.GetMouseButtonDown(1))
         {
             Ray _ray = mainCam.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(_ray, out _hit, float.MaxValue, clickableLayer))
             {
-                clickPos = _hit.point;
+                if(!isSliding && Input.GetKey(KeyCode.LeftShift))
+                {
+                    savedClicks.Add(_hit.point);
+                }
+                else
+                {
+                    savedClicks.Clear();
+                    savedClicks.Add(_hit.point);
+                }
+                clickPos = savedClicks[0];
                 StartCoroutine(ClickAnimation());
 
                 if(inReverse)
@@ -142,10 +173,12 @@ public class PlayerMovement : MonoBehaviour
             Ray _ray = mainCam.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(_ray, out _hit, float.MaxValue, clickableLayer))
             {
-                clickPos = _hit.point;
+                savedClicks.Add(_hit.point);
+                clickPos = savedClicks[0];
                 transform.rotation = Quaternion.LookRotation(_hit.point - transform.position);
             }
             StartCoroutine(ClickAnimation());
+            savedClicks.Clear();
         }
 
         //Checks if player has pressed E for pushing movable blocks
@@ -159,26 +192,13 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(PushBlock());
             }
         }
-
-        //Checks if player has moved the penguin
-        //Penguin will move based on terrain
-        if(isMoving && isSliding)
-        {
-            Slide();
-        }
-        else if(isMoving)
-        {
-            Move();
-        }
-        else
-        {
-            _acceleration = 0;
-        }
     }
 
 
     //Player has pressed RMB while on ground
     //Penguin will turn and move in new direction and position of mouse cursor
+    //If player pressed RMB while holding SHIFT, penguin will continue to move to next click position
+    //Penguin will stop moving if player pressed F
     void Move()
     {
         transform.rotation = clickPosRot;
@@ -190,6 +210,21 @@ public class PlayerMovement : MonoBehaviour
         }
         if(transform.position == clickPos)
         {
+            savedClicks.RemoveAt(0);
+
+            if(savedClicks.Count > 0)
+            {
+                clickPos = savedClicks[0];
+                clickPosRot = Quaternion.LookRotation(clickPos - transform.position);
+            }
+            else
+            {
+                isMoving = false;
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            savedClicks.Clear();
             isMoving = false;
         }
     }
@@ -294,9 +329,9 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator ClickAnimation()
     {
         Vector3 clickAnimPos;
-        clickAnimPos.x = clickPos.x;
+        clickAnimPos.x = savedClicks[savedClicks.Count - 1].x;
         clickAnimPos.y = 5f;
-        clickAnimPos.z = clickPos.z - 2.85f;
+        clickAnimPos.z = savedClicks[savedClicks.Count - 1].z - 2.85f;
         clickImage.transform.position = clickAnimPos;
         Color _temp = clickImage.GetComponent<SpriteRenderer>().color;
         _temp.a = 1f;
@@ -311,4 +346,8 @@ public class PlayerMovement : MonoBehaviour
         _temp.a = 0f;
         clickImage.GetComponent<SpriteRenderer>().color = _temp;
     }
+
+
+    //player death does not clear savedClicks list
+    //check if all savedClicks.Clear() are necessary
 }
