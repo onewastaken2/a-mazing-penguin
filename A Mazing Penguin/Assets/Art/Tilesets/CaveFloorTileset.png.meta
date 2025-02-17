@@ -1,0 +1,1064 @@
+fileFormatVersion: 2
+guid: a410f6ad9541d6346ba1d15f97e5c7c7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2818852152982466251
+    second: CaveFloorTileset_0
+  - first:
+      213: -4596358109378814117
+    second: CaveFloorTileset_1
+  - first:
+      213: -2137534971941654932
+    second: CaveFloorTileset_2
+  - first:
+      213: -6832659663405740444
+    second: CaveFloorTileset_3
+  - first:
+      213: -7495082326232996736
+    second: CaveFloorTileset_4
+  - first:
+      213: -4955364352086295512
+    second: CaveFloorTileset_5
+  - first:
+      213: -940928117756698732
+    second: CaveFloorTileset_6
+  - first:
+      213: -2348423991134495068
+    second: CaveFloorTileset_7
+  - first:
+      213: 304057032248974284
+    second: CaveFloorTileset_8
+  - first:
+      213: 7030931351835055939
+    second: CaveFloorTileset_9
+  - first:
+      213: -602803441361734390
+    second: CaveFloorTileset_10
+  - first:
+      213: -8984294427142369238
+    second: CaveFloorTileset_11
+  - first:
+      213: 261841222307896557
+    second: CaveFloorTileset_12
+  - first:
+      213: 4377535183704310866
+    second: CaveFloorTileset_13
+  - first:
+      213: 7853248490796725852
+    second: CaveFloorTileset_14
+  - first:
+      213: -8200021380921122173
+    second: CaveFloorTileset_15
+  - first:
+      213: 3184141516212242668
+    second: CaveFloorTileset_16
+  - first:
+      213: -5758353962968623744
+    second: CaveFloorTileset_17
+  - first:
+      213: -5516568949210170006
+    second: CaveFloorTileset_18
+  - first:
+      213: 8388719272332340660
+    second: CaveFloorTileset_19
+  - first:
+      213: -3518620824638666180
+    second: CaveFloorTileset_20
+  - first:
+      213: -8945501257012237160
+    second: CaveFloorTileset_21
+  - first:
+      213: -3992107958674667502
+    second: CaveFloorTileset_22
+  - first:
+      213: 4296462894466220086
+    second: CaveFloorTileset_23
+  - first:
+      213: -6229947371513268703
+    second: CaveFloorTileset_24
+  - first:
+      213: -3028020497420136228
+    second: CaveFloorTileset_25
+  - first:
+      213: 5082215630407258717
+    second: CaveFloorTileset_26
+  - first:
+      213: 1326287472375850326
+    second: CaveFloorTileset_27
+  - first:
+      213: 2589360348910969842
+    second: CaveFloorTileset_28
+  - first:
+      213: 4139809709147935801
+    second: CaveFloorTileset_29
+  - first:
+      213: -1260388797275174098
+    second: CaveFloorTileset_30
+  - first:
+      213: -8335700443234022760
+    second: CaveFloorTileset_31
+  - first:
+      213: -5060429819570320138
+    second: CaveFloorTileset_32
+  - first:
+      213: 1136220764118882093
+    second: CaveFloorTileset_33
+  - first:
+      213: 2143396076092911741
+    second: CaveFloorTileset_34
+  - first:
+      213: -8296748118467472146
+    second: CaveFloorTileset_35
+  - first:
+      213: 381736357621571831
+    second: CaveFloorTileset_36
+  - first:
+      213: 6425184109912027446
+    second: CaveFloorTileset_37
+  - first:
+      213: 5505923228494704959
+    second: CaveFloorTileset_38
+  - first:
+      213: -2425075646630385198
+    second: CaveFloorTileset_39
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 256
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CaveFloorTileset_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1056
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bce6dd429139e1720800000000000000
+      internalID: 2818852152982466251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_1
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 1056
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5f5dfde6a47630c0800000000000000
+      internalID: -4596358109378814117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_2
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1056
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6e6176a443f552e0800000000000000
+      internalID: -2137534971941654932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_3
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 1056
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46e8f83bc348d21a0800000000000000
+      internalID: -6832659663405740444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_4
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 1056
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 084e29eb55e1cf790800000000000000
+      internalID: -7495082326232996736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_5
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1056
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82c334d50620b3bb0800000000000000
+      internalID: -4955364352086295512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_6
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 1056
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49f5fe5bcd621f2f0800000000000000
+      internalID: -940928117756698732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_7
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 1056
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ae5c6292d8b86fd0800000000000000
+      internalID: -2348423991134495068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccbd8a6824a383400800000000000000
+      internalID: 304057032248974284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_9
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 347194220d2e29160800000000000000
+      internalID: 7030931351835055939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_10
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a053040c67962a7f0800000000000000
+      internalID: -602803441361734390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_11
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2058a0c1df515380800000000000000
+      internalID: -8984294427142369238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_12
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dec5733543f32a300800000000000000
+      internalID: 261841222307896557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_13
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25448707e0120cc30800000000000000
+      internalID: 4377535183704310866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_14
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 795
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c56bfc2e4e75cfc60800000000000000
+      internalID: 7853248490796725852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_15
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 382a697effba33e80800000000000000
+      internalID: -8200021380921122173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 528
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce88764b6d7503c20800000000000000
+      internalID: 3184141516212242668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_17
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 531
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 085da4a64973610b0800000000000000
+      internalID: -5758353962968623744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_18
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 531
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6db06bc4c53173b0800000000000000
+      internalID: -5516568949210170006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_19
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 528
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bda7db9bb7ba6470800000000000000
+      internalID: 8388719272332340660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_20
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 528
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3ace10a0095b2fc0800000000000000
+      internalID: -3518620824638666180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_21
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 528
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89ca9f580023bd380800000000000000
+      internalID: -8945501257012237160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_22
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 528
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 218cf2276fe2998c0800000000000000
+      internalID: -3992107958674667502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_23
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 528
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6304e472d3a10ab30800000000000000
+      internalID: 4296462894466220086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 264
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 126b29f8fd7ca89a0800000000000000
+      internalID: -6229947371513268703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_25
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 264
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd0dba6966f4af5d0800000000000000
+      internalID: -3028020497420136228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_26
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 264
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d52dc5a6038a78640800000000000000
+      internalID: 5082215630407258717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_27
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 264
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 655630ddd6be76210800000000000000
+      internalID: 1326287472375850326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_28
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 264
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f3e150b4814fe320800000000000000
+      internalID: 2589360348910969842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_29
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 264
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 934d97f2ffe837930800000000000000
+      internalID: 4139809709147935801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_30
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 264
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2b08831113328ee0800000000000000
+      internalID: -1260388797275174098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_31
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 264
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89a48fe7c94a15c80800000000000000
+      internalID: -8335700443234022760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fc87b1f3edb5c9b0800000000000000
+      internalID: -5060429819570320138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_33
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d279ab7d3caa4cf00800000000000000
+      internalID: 1136220764118882093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_34
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d70fb70006fdebd10800000000000000
+      internalID: 2143396076092911741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_35
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee41bd75b870cdc80800000000000000
+      internalID: -8296748118467472146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_36
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f0a2e9d1333c4500800000000000000
+      internalID: 381736357621571831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_37
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6317ac7e7e6da2950800000000000000
+      internalID: 6425184109912027446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_38
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f31bff23108f86c40800000000000000
+      internalID: 5505923228494704959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CaveFloorTileset_39
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d925294c86685ed0800000000000000
+      internalID: -2425075646630385198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5b282ca8e061b0a45a4b32a14d32fd5b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

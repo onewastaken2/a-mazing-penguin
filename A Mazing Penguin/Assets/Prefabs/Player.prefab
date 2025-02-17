@@ -266,7 +266,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.55
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &4767897354628460044
 MonoBehaviour:
@@ -321,10 +321,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingBlocks: []
   blockOriginPos: []
+  snowPiles: []
+  snowPileLayer:
+    serializedVersion: 2
+    m_Bits: 0
   _checkpoint: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 16384
+  pitLayer:
+    serializedVersion: 2
+    m_Bits: 0
   playerDeaths: {fileID: 0}
   _collider: {fileID: 5863659628632084262}
+  isNearSnowPile: 0
+  canPlaceCheckpoint: 1
   isRespawning: 0
