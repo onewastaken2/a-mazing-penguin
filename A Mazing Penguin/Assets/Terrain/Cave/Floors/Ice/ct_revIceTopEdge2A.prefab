@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 2559017237705509339}
   - component: {fileID: 1095755892836578314}
   m_Layer: 12
-  m_Name: cf_revIceTopEdge2A
+  m_Name: ct_revIceTopEdge2A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

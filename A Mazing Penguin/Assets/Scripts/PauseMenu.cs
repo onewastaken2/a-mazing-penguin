@@ -7,6 +7,8 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;   //For all pause menu contents
 
+    [SerializeField] private GameObject levelSelectionScreen;   //THIRD BUILD ONLY
+
 
     private void Update()
     {
@@ -25,6 +27,15 @@ public class PauseMenu : MonoBehaviour
     }
 
 
+    //Player has pressed ESC to pause
+    public void Pause()
+    {
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+    }
+
+
     //Button for unpausing and returning to the game
     public void Resume()
     {
@@ -34,12 +45,19 @@ public class PauseMenu : MonoBehaviour
     }
 
 
-    //Player has pressed ESC to pause
-    public void Pause()
+    //PUT FADE IN HERE?
+    //Button for restarting the current level
+    public void Restart()
     {
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        isPaused = true;
+        Resume();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+
+    //THIRD BUILD ONLY
+    public void LevelSelect()
+    {
+        levelSelectionScreen.SetActive(true);
     }
 
 
@@ -55,6 +73,7 @@ public class PauseMenu : MonoBehaviour
     //Button for closing the application
     public void QuitGame()
     {
+        Debug.Log("quit");
         Application.Quit();
     }
 

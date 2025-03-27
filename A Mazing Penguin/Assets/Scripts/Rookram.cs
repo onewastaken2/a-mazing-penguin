@@ -16,7 +16,7 @@ public class Rookram : MonoBehaviour
     private bool isBlocked = false;    //Rookram has just hit a non-player object and is now stopped
 
     private float moveSpeed = 2f;   //Represents Rookram starting speed before ramping up
-    private float maxSpeed = 10f;   //Represents Rookram maximum speed during charging forward
+    private float maxSpeed = 7f;    //Represents Rookram maximum speed during charging forward
     private float originSpeed;      //For resetting moveSpeed back to its original state
 
 

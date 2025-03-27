@@ -8,12 +8,13 @@ public class Snowgul : MonoBehaviour
     [SerializeField] private GameObject snowballPrefab;    //References snowball prefab for instantiation
     [SerializeField] private Transform spawnPoint;         //Where snowballs are instantiated when shot
 
+    [SerializeField] private float attackRange;   //Determines snowgul attack radius size
+
     private bool isAttacking = false;   //If player is currently within range for snowgul to attack
 
-    private float attackRange = 12f;   //Determines snowgul attack radius size
-    private float turnSpeed = 6f;      //How quickly snowgul turns to face player
-    private float originTimer;         //For resetting timer back to its original amount
-    private float _timer = 3f;         //How long it takes before shooting a snowball after spotting player
+    private float turnSpeed = 6f;   //How quickly snowgul turns to face player
+    private float originTimer;      //For resetting timer back to its original amount
+    private float _timer = 3f;      //How long it takes before shooting a snowball after spotting player
 
 
     private void Awake()
@@ -50,7 +51,8 @@ public class Snowgul : MonoBehaviour
         if(distanceToPlayer <= attackRange)
         {
             RaycastHit _hit;
-            Ray rayToPlayer = new Ray(transform.position, playerObj.transform.position - transform.position);
+            Vector3 playerPos = new Vector3(playerObj.transform.position.x, transform.position.y, playerObj.transform.position.z);
+            Ray rayToPlayer = new Ray(transform.position, playerPos - transform.position);
 
             if(Physics.Raycast(rayToPlayer, out _hit, distanceToPlayer, environmentLayer))
             {
@@ -60,6 +62,10 @@ public class Snowgul : MonoBehaviour
             {
                 isAttacking = true;
             }
+        }
+        else
+        {
+            isAttacking = false;
         }
     }
 

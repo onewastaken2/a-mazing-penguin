@@ -17,7 +17,6 @@ public class MovingBlock : MonoBehaviour
     [SerializeField] private LayerMask environmentLayer;   //For detecting walls and impassable objects
     [SerializeField] private LayerMask enemyLayer;         //For detecting if enemy is in the way
     [SerializeField] private LayerMask pitLayer;           //For detecting pits and edges
-    [SerializeField] private LayerMask iceLayer;           //For detecting if on ice to begin sliding
     [SerializeField] private Collider _collider;           //References collider for boxcast origin
 
     private Vector3 currentPos;        //Finds THIS position when player has pushed THIS
@@ -30,6 +29,8 @@ public class MovingBlock : MonoBehaviour
 
     private bool onIce = false;   //For when moving block is sliding on ice
 
+    private int iceLayers;   //For detecting if on any ice layers to begin sliding
+
     private float currentSpeed;      //Keeps track of moving block speed as it quickly slows down
     private float maxSpeed = 6.5f;   //The fastest THIS can go
 
@@ -40,6 +41,7 @@ public class MovingBlock : MonoBehaviour
         //Is turned on only when moving block is being pushed
         enabled = false;
         playerDeathRef = pushBlockHitbox.GetComponentInParent<Player>();
+        iceLayers = (1 << 10) | (1 << 11) | (1 << 12);
     }
 
 
@@ -48,7 +50,7 @@ public class MovingBlock : MonoBehaviour
         //Player was close enough to push moving block
         //Checks if THIS is currently on top of ice or not
         if(Physics.BoxCast(_collider.bounds.center, new Vector3(0.2f, 0.2f, 0.2f),
-        transform.TransformDirection(Vector3.down), out _hit, transform.rotation, 1f, iceLayer))
+        transform.TransformDirection(Vector3.down), out _hit, transform.rotation, 1f, iceLayers))
         {
             onIce = true;
         }

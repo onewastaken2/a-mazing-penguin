@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     public bool hasSkates = false;    //For when penguin is on ice with skates and CAN turn
     public bool inReverse = false;    //For when penguin is on REVERSE ice and clickPos is calculated to be inverted
 
+    public bool canPushBlocks = false;
+
     private float _acceleration = 0f;   //Allows for gradual increase in movement speed
     private float walkSpeed = 4f;       //How fast penguin walks on ground
     private float slideSpeed = 8f;      //How fast penguin slides on ice
@@ -183,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Checks if player has pressed E for pushing movable blocks
         //Penguin will change in one of FOUR directions based on current facing direction
-        if(!isMoving || !isSliding && isMoving || isSliding && !isMoving)
+        if(!isMoving || !isSliding && isMoving || isSliding && !isMoving & canPushBlocks)
         {
             if(Input.GetKeyDown(KeyCode.E))
             {

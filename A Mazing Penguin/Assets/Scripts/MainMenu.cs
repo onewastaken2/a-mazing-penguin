@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private string feedbackForm;     //References feedback form url
     [SerializeField] private Button continueButton;   //For disabling should there be no saved game on file
 
+    [SerializeField] private GameObject levelSelectionObj;   //THIRD BUILD ONLY
+
 
     private void Awake()
     {
@@ -23,7 +25,10 @@ public class MainMenu : MonoBehaviour
     //Player will start game in latest level reached
     public void ContinueGame()
     {
-        SceneManager.LoadScene(PlayerData.farthestLevelReached);
+        //SceneManager.LoadScene(PlayerData.farthestLevelReached);
+
+        //THIRD BUILD ONLY
+        levelSelectionObj.SetActive(true);
     }
 
 
@@ -31,7 +36,7 @@ public class MainMenu : MonoBehaviour
     //Overrides any saved data, deleting all progress made in a previous game
     public void NewGame()
     {
-        PlayerData.farthestLevelReached = 0;
+        PlayerData.farthestLevelReached = 1;
         PlayerData.deathCount = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }

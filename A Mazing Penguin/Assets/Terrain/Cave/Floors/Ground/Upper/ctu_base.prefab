@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 2818852152982466251, guid: a410f6ad9541d6346ba1d15f97e5c7c7,
     type: 3}
-  m_Color: {r: 0.84313726, g: 0.84313726, b: 0.84313726, a: 1}
+  m_Color: {r: 0.7921569, g: 0.81960785, b: 0.8862745, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -91,9 +91,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2559017237705509339}
-  - component: {fileID: 1095755892836578314}
-  m_Layer: 9
-  m_Name: ct_base 1
+  m_Layer: 0
+  m_Name: ctu_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,16 +113,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1095755892836578314
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918995815401464708}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 0.1, z: 2}
-  m_Center: {x: 0, y: -0.05, z: 0}

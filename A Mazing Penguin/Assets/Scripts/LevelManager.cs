@@ -1,26 +1,32 @@
-﻿using System.Collections;
+﻿using UnityEngine.UI;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private Light mainLight;        //References main light for scene transitions
     [SerializeField] private GameObject playerObj;   //References player gameObject for accessing controller
+    [SerializeField] private Image screenFade;       //Black image for level transition fade
 
     private PlayerMovement playerMovement;   //For whether power ups are active based on level
 
     private int currentLevel;   //Keeps track of current level player is on right now
 
     public GameObject levelEndScreen;   //For referencing when to enable end level text
+
+    public GameObject levelSelectionScreen;                 //THIRD BUILD ONLY
+    private LevelSelection levelSelectionRef;               //THIRD BUILD ONLY
     
 
     private void Awake()
     {
-        mainLight.intensity = 0;
         playerMovement = playerObj.GetComponent<PlayerMovement>();
         //playerMovement.enabled = true;
         currentLevel = SceneManager.GetActiveScene().buildIndex;
         LevelSetup();
+
+        //THIRD BUILD ONLY
+        levelSelectionRef = levelSelectionScreen.GetComponent<LevelSelection>();
     }
 
 
@@ -34,6 +40,10 @@ public class LevelManager : MonoBehaviour
     //Checks if power ups are enabled based on current level
     void LevelSetup()
     {
+        if(currentLevel >= 2)
+        {
+            playerMovement.canPushBlocks = true;
+        }
         if(currentLevel >= 3)
         {
             playerMovement.hasSkates = true;
@@ -45,12 +55,21 @@ public class LevelManager : MonoBehaviour
     }
 
 
+    //THIRD BUILD ONLY
+    public void LevelEndToLevelSelect()
+    {
+        levelEndScreen.SetActive(false);
+        levelSelectionScreen.SetActive(true);
+        levelSelectionRef.TurnLevelButtonsOn();
+    }
+
+
     //Level end text is displayed
     //Player can click to continue to next level
     public void LevelExit()
     {
-        StartCoroutine(FadeIn());
         levelEndScreen.SetActive(false);
+        StartCoroutine(FadeIn());
     }
 
 
@@ -62,7 +81,7 @@ public class LevelManager : MonoBehaviour
         {
             if(SceneManager.GetActiveScene().buildIndex != 5)
             {
-                if(currentLevel > PlayerData.farthestLevelReached)
+                if(currentLevel + 1 > PlayerData.farthestLevelReached)
                 {
                     PlayerData.farthestLevelReached++;
                 }
@@ -71,40 +90,53 @@ public class LevelManager : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene(0);
+                levelEndScreen.SetActive(true);
+                playerMovement.enabled = false;
             }
         }
     }
 
 
-    //Player has reach end of level
+    //Player reached end of level
     //Scene goes dims to black
     //Loads the next level
-    IEnumerator FadeIn()
+    public IEnumerator FadeIn()
     {
         float _duration = 2f;
-        float _interval = 0.1f;
-        
+        float _interval = 0.07f;
+
+        Color _color = screenFade.color;
+        float newAlpha = 0f;
+
         while(_duration > 0.0f)
         {
-            mainLight.intensity -= 0.05f;
+            newAlpha += 0.05f;
+            _color.a = newAlpha;
+            screenFade.color = _color;
+
             _duration -= _interval;
             yield return new WaitForSeconds(_interval);
         }
-        SceneManager.LoadScene(currentLevel + 1);
+        //SceneManager.LoadScene(currentLevel + 1);
     }
 
 
     //Player has started a new level
-    //Scene brightens up from black screen
+    //Scene transitions from black screen
     IEnumerator FadeOut()
     {
         float _duration = 2f;
-        float _interval = 0.1f;
+        float _interval = 0.07f;
+
+        Color _color = screenFade.color;
+        float newAlpha = 1f;
 
         while(_duration > 0.0f)
         {
-            mainLight.intensity += 0.05f;
+            newAlpha -= 0.05f;
+            _color.a = newAlpha;
+            screenFade.color = _color;
+
             _duration -= _interval;
             yield return new WaitForSeconds(_interval);
         }

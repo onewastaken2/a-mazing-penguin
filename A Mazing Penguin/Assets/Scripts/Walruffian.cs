@@ -11,9 +11,9 @@ public class Walruffian : MonoBehaviour
 
     private int currentPath = 0;    //What path point walruffian is moving to currently
 
-    private float moveSpeed = 5f;    //How fast walruffian patrols
-    private float stopTime = 0.1f;   //How long walruffian stops briefly after reaching a path point
-    private float _timer;            //Is set and counts down before walruffian continues to next path point
+    private float moveSpeed = 4f;     //How fast walruffian patrols
+    private float stopTime = 0.15f;   //How long walruffian stops briefly after reaching a path point
+    private float _timer;             //Is set and counts down before walruffian continues to next path point
 
 
     private void Update()

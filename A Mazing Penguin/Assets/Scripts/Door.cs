@@ -8,6 +8,7 @@ public class Door : MonoBehaviour
     private List<FloorSwitch> floorSwitches = new List<FloorSwitch>();   //If isLocked, references floorSwitchObjs[] scripts
 
     private MeshRenderer meshRef;
+    private Collider colliderRef;
 
     public bool isLocked = false;   //Whether THIS door requires all floor switches to be pressed or not to open
 
@@ -22,6 +23,7 @@ public class Door : MonoBehaviour
             }
         }
         meshRef = gameObject.GetComponent<MeshRenderer>();
+        colliderRef = gameObject.GetComponent<BoxCollider>();
     }
 
 
@@ -32,10 +34,12 @@ public class Door : MonoBehaviour
         if(meshRef.enabled == false)
         {
             meshRef.enabled = true;
+            colliderRef.enabled = true;
         }
         else
         {
             meshRef.enabled = false;
+            colliderRef.enabled = false;
         }
     }
 
@@ -58,10 +62,12 @@ public class Door : MonoBehaviour
         if(heldSwitches == totalSwitches)
         {
             meshRef.enabled = false;
+            colliderRef.enabled = false;
         }
         else
         {
             meshRef.enabled = true;
+            colliderRef.enabled = true;
         }
     }
 }

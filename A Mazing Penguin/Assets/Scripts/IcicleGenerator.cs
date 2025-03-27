@@ -13,11 +13,11 @@ public class IcicleGenerator : MonoBehaviour
     private Vector3 rbVelocity;          //References rigidbody so that its velocity is reset after falling
     private Vector3 spawnPos;            //Position of where icicle spawns, set to 25f in Awake()
 
-    private float originSpawnTimer;       //Variable for resetting spawnTimer back after icicle despawning
-    private float minDistance = 0.1f;     //Closest distance between icicle and shadow before shadow size STOPS increasing
-    private float maxDistance;            //Farthest distance between icicle and shadow before shadow size STARTS increasing
-    private float minDistanceSize = 7f;   //Shadow will be THIS LARGE in scale when icicle is nearest to ground
-    private float maxDistanceSize = 1f;   //Shadow will be THIS SMALL in scale when icicle is farthest to ground
+    private float originSpawnTimer;         //Variable for resetting spawnTimer back after icicle despawning
+    private float minDistance = 0.1f;       //Closest distance between icicle and shadow before shadow size STOPS increasing
+    private float maxDistance;              //Farthest distance between icicle and shadow before shadow size STARTS increasing
+    private float minDistanceSize = 7f;     //Shadow will be THIS LARGE in scale when icicle is nearest to ground
+    private float maxDistanceSize = 0.5f;   //Shadow will be THIS SMALL in scale when icicle is farthest to ground
 
 
     private void Awake()

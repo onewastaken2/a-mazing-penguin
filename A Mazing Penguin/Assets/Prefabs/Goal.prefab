@@ -91,7 +91,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 3
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -107,5 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9d46ebe7220944da55123359bce3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainLight: {fileID: 0}
   playerObj: {fileID: 0}
+  screenFade: {fileID: 0}
+  levelEndScreen: {fileID: 0}
+  levelSelectionScreen: {fileID: 0}

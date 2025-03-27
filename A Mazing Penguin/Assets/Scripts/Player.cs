@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
 
     public bool isRespawning = false;   //To be referenced by other scripts during player dying or resetting
 
+    //THIRD BUILD ONLY
+    [SerializeField] private Renderer childRef;
+
 
     private void Awake()
     {
@@ -150,6 +153,7 @@ public class Player : MonoBehaviour
                 {
                     snowPilePos = snowPile.transform.position;
                     isNearSnowPile = true;
+                    Debug.Log("near snowpile");
                 }
             }
         }
@@ -174,7 +178,20 @@ public class Player : MonoBehaviour
     {
         playerMovementRef.enabled = false;
         playerMovementRef.isMoving = false;
+
+        Color originColor = childRef.material.color;
+        Renderer[] colorChange = GetComponentsInChildren<Renderer>();
+        foreach(var obj in colorChange)
+        {
+            obj.material.color = Color.red;
+        }
+
         yield return new WaitForSeconds(1f);
+
+        foreach(var obj in colorChange)
+        {
+            obj.material.color = originColor;
+        }
 
         if(isFalling)
         {

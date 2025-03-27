@@ -2,7 +2,8 @@
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] private GameObject playerObj;   //References player position for when camera returns to player
+    [SerializeField] private GameObject playerObj;     //References player position for when camera returns to player
+    [SerializeField] private GameObject levelEndObj;   //References level end position for when player wants to view location
 
     [SerializeField] private int upBound;      //Camera CANNOT be moved beyond this point in NORTH direction
     [SerializeField] private int downBound;    //Camera CANNOT be moved beyond this point in SOUTH direction
@@ -12,15 +13,18 @@ public class CameraMovement : MonoBehaviour
     private Player playerRef;                   //For referencing whether isRespawning
     private PlayerMovement playerMovementRef;   //For referencing PlayerMovement.enabled
 
-    private Vector3 camToPlayer;                //Camera moves back to player with penguin in center of view
+    private Vector3 camToObj;                   //Camera moves to either level end position or penguin, in center of view
     private Vector3 _velocity = Vector3.zero;   //Represents the current velocity during camera easing, value is modified every function call
 
-    private bool followPlayer = false;   //Checks if space bar is being held so camera panning with WASD cannot occur
+    private bool followPlayer = false;    //Checks if space bar is being held so camera panning with WASD cannot occur
+    private bool levelEndCheck = false;   //For if player pressed F to pan and check level end position
 
-    private float camY;                //References camera position on y to keep from moving on y axis
-    private float panSpeed = 22f;      //How fast camera moves when panning
-    private float smoothTime = 0.4f;   //Time it takes for camera to center to penguin during respawn, value decreases every frame
-    private float originSmoothTime;    //Stores original smoothTime value so it resets back AFTER respawning
+    private float camY;                 //References camera position on y to keep from moving on y axis
+    private float _acceleration = 0f;   //Allows for gradual increase in speed for manual camera panning
+    private float panSpeed = 24f;       //How fast camera moves when panning
+    private float smoothTime = 0.4f;    //Value for SmoothDamp when centering camera to penguin or end of level, decreases ever frame
+    private float originSmoothTime;     //Stores original smoothTime value so it can be reset
+    private float _threshold = 0.05f;   //Value for getting an approximation rather than relying on float precision for SmoothDamp
 
 
     private void Awake()
@@ -35,15 +39,29 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        //Checks if player is not respawning so WASD and space bar can be used freely
+        //Checks if player is viewing end of level location with F
+        //If not, WASD and space bar can be used freely to move camera
         //If respawning, player is locked from controlling camera temporarily
         if(!playerRef.isRespawning)
         {
-            MoveCamera();
-            CameraFollow();
+            if(levelEndCheck)
+            {
+                ViewEndOfLevel();
+            }
+            else
+            {
+                MoveCamera();
+                CameraFollow();
+            }
         }
         else
         {
+            if(levelEndCheck)
+            {
+                smoothTime = originSmoothTime;
+                levelEndCheck = false;
+            }
+            _acceleration = 0f;
             CameraEaseToPlayer();
         }
     }
@@ -61,33 +79,57 @@ public class CameraMovement : MonoBehaviour
             float edgeSize = 10f;
 
             if(Input.GetKey(KeyCode.W) && transform.position.z < upBound ||
-                Input.mousePosition.y > Screen.height - edgeSize)
+                Input.mousePosition.y > Screen.height - edgeSize && transform.position.z < upBound)
             {
+                if(_acceleration < panSpeed)
+                {
+                    _acceleration += 0.75f;
+                }
                 moveZ += 1f;
             }
             if(Input.GetKey(KeyCode.A) && transform.position.x > leftBound ||
-                Input.mousePosition.x < edgeSize)
+                Input.mousePosition.x < edgeSize && transform.position.x > leftBound)
             {
+                if(_acceleration < panSpeed)
+                {
+                    _acceleration += 0.75f;
+                }
                 moveX -= 1f;
             }
             if(Input.GetKey(KeyCode.S) && transform.position.z > downBound ||
-                Input.mousePosition.y < edgeSize)
+                Input.mousePosition.y < edgeSize && transform.position.z > downBound)
             {
+                if(_acceleration < panSpeed)
+                {
+                    _acceleration += 0.75f;
+                }
                 moveZ -= 1f;
             }
             if(Input.GetKey(KeyCode.D) && transform.position.x < rightBound ||
-                Input.mousePosition.x > Screen.width - edgeSize)
+                Input.mousePosition.x > Screen.width - edgeSize && transform.position.x < rightBound)
             {
+                if(_acceleration < panSpeed)
+                {
+                    _acceleration += 0.75f;
+                }
                 moveX += 1f;
             }
+            else if(moveX == 0 & moveZ == 0)
+            {
+                if(_acceleration > 0)
+                {
+                    _acceleration -= 0.75f;
+                }
+            }
             Vector3 camMove = new Vector3(moveX, 0, moveZ).normalized;
-            transform.position += camMove * panSpeed * Time.deltaTime;
+            transform.position += camMove * _acceleration * Time.deltaTime;
         }
     }
 
 
     //Checks if player HAD pressed space bar to recenter camera to penguin
     //Then checks if space bar is BEING HELD DOWN for manual camera lock to penguin
+    //Also checks if player pressed F to pan camera and view level end position
     void CameraFollow()
     {
         if(Input.GetKeyDown(KeyCode.Space))
@@ -103,14 +145,19 @@ public class CameraMovement : MonoBehaviour
         {
             followPlayer = false;
         }
+        if(Input.GetKey(KeyCode.F))
+        {
+            levelEndCheck = true;
+        }
     }
 
 
     //Camera snaps and centered to position of penguin
     void CameraLock()
     {
-        camToPlayer = new Vector3(playerObj.transform.position.x, camY, playerObj.transform.position.z - 5f);
-        transform.position = camToPlayer;
+        camToObj = new Vector3(playerObj.transform.position.x, camY, playerObj.transform.position.z - 5f);
+        _velocity = Vector3.zero;
+        transform.position = camToObj;
     }
 
 
@@ -119,14 +166,14 @@ public class CameraMovement : MonoBehaviour
     //While respawning, player can move once camera is centered on penguin
     void CameraEaseToPlayer()
     {
-        camToPlayer = new Vector3(playerObj.transform.position.x, camY, playerObj.transform.position.z - 5f);
-        transform.position = Vector3.SmoothDamp(transform.position, camToPlayer, ref _velocity, smoothTime);
+        camToObj = new Vector3(playerObj.transform.position.x, camY, playerObj.transform.position.z - 5f);
+        transform.position = Vector3.SmoothDamp(transform.position, camToObj, ref _velocity, smoothTime);
 
         if(playerRef.isRespawning)
         {
             smoothTime -= 0.0015f;
 
-            if(transform.position == camToPlayer)
+            if((transform.position - camToObj).sqrMagnitude < _threshold)
             {
                 smoothTime = originSmoothTime;
                 playerRef.isRespawning = false;
@@ -134,4 +181,26 @@ public class CameraMovement : MonoBehaviour
             }
         }
     }
+
+
+    //Checks if player HAD pressed F to center camera to end of level
+    void ViewEndOfLevel()
+    {
+        camToObj = new Vector3(levelEndObj.transform.position.x, camY, levelEndObj.transform.position.z - 5f);
+        transform.position = Vector3.SmoothDamp(transform.position, camToObj, ref _velocity, smoothTime);
+
+        if(levelEndCheck)
+        {
+            smoothTime -= 0.0015f;
+
+            if((transform.position - camToObj).sqrMagnitude < _threshold)
+            {
+                smoothTime = originSmoothTime;
+                levelEndCheck = false;
+            }
+        }
+    }
+    
+    //add pan effect rather than snap with CameraLock()
+    //add CameraLock() option for player during respawn to move freely more quickly
 }
